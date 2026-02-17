@@ -1,15 +1,16 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 import os
+import json
 
 def init_firebase():
     if not firebase_admin._apps:
-        cred_dict = {
-            "type": "service_account",
-            "project_id": os.getenv("FIREBASE_PROJECT_ID"),
-            "private_key": os.getenv("FIREBASE_PRIVATE_KEY").replace("\\n", "\n"),
-            "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
-        }
+        firebase_config = os.getenv("FIREBASE_CONFIG")
+
+        if not firebase_config:
+            raise ValueError("FIREBASE_CONFIG tidak ditemukan di environment variable")
+
+        cred_dict = json.loads(firebase_config)
 
         cred = credentials.Certificate(cred_dict)
         firebase_admin.initialize_app(cred)
