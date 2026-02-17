@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+firebase-admin
+pdfplumber
+blake3
+python-multipart
+pydantic
+qrcode
+pillow
+python-dateutil
+pqcrypto
+psutil

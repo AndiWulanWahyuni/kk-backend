@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Keys
+keys/
+*.key
+
+# Firebase credential
+firebase_config.json
