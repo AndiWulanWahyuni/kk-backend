@@ -11,3 +11,6 @@ keys/
 
 # Firebase credential
 firebase_config.json
+
+# env files
+*.env
