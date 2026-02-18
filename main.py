@@ -12,8 +12,9 @@ from extract_data import extract_kk_data
 from hash_helper import generate_hash
 from signature_helper import sign_document, verify_document
 from qr_helper import generate_qr_response
-
+import pytz
 import os
+
 FRONTEND_URL = os.getenv("FRONTEND_URL")
 
 app = FastAPI(
@@ -84,9 +85,8 @@ async def verify_pdf(file: UploadFile = File(...)):
 
     records = get_all_versions(doc_id)
 
-    timestamp = datetime.now(timezone.utc).astimezone().strftime(
-        "%d-%m-%Y %H:%M:%S"
-    )
+    wib = pytz.timezone("Asia/Jakarta")
+    timestamp = datetime.now(wib).strftime("%d-%m-%Y %H:%M:%S")
 
     # 1️⃣ DATA TIDAK TERDAFTAR
     if not records:
@@ -166,9 +166,8 @@ async def verify_pdf(file: UploadFile = File(...)):
 def verify_qr(doc_id: str, v: int):
     record = get_kk_by_version(doc_id, v)
 
-    timestamp = datetime.now(timezone.utc).astimezone().strftime(
-        "%d-%m-%Y %H:%M:%S"
-    )
+    wib = pytz.timezone("Asia/Jakarta")
+    timestamp = datetime.now(wib).strftime("%d-%m-%Y %H:%M:%S")
 
     # 1️⃣ DATA TIDAK TERDAFTAR
     if not record:
@@ -287,9 +286,8 @@ async def update_kk(nomor_kk: str, file: UploadFile = File(...)):
     hash_bytes = generate_hash(data)
     sig = sign_document(hash_bytes)
 
-    timestamp = datetime.now(timezone.utc).astimezone().strftime(
-        "%d-%m-%Y %H:%M:%S"
-    )
+    wib = pytz.timezone("Asia/Jakarta")
+    timestamp = datetime.now(wib).strftime("%d-%m-%Y %H:%M:%S")
 
     save_kk_record(
         doc_id=nomor_kk,
