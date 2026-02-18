@@ -14,14 +14,14 @@ from signature_helper import sign_document, verify_document
 from qr_helper import generate_qr_response
 
 import os
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+FRONTEND_URL = os.getenv("https://kk-frontend-sepia.vercel.app/", "http://localhost:3000")
 
 app = FastAPI(
     title="API Verifikasi KK (BLAKE3 + ML-DSA-65)")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", os.getenv("FRONTEND_URL")],
+    allow_origins=["http://localhost:3000", os.getenv("https://kk-frontend-sepia.vercel.app/")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
