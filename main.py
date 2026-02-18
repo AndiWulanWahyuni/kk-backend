@@ -85,8 +85,8 @@ async def verify_pdf(file: UploadFile = File(...)):
 
     records = get_all_versions(doc_id)
 
-    wib = pytz.timezone("Asia/Jakarta")
-    timestamp = datetime.now(wib).strftime("%d-%m-%Y %H:%M:%S")
+    wita = pytz.timezone("Asia/Makassar")
+    timestamp = datetime.now(wita).strftime("%d-%m-%Y %H:%M:%S")
 
     # 1️⃣ DATA TIDAK TERDAFTAR
     if not records:
@@ -166,8 +166,8 @@ async def verify_pdf(file: UploadFile = File(...)):
 def verify_qr(doc_id: str, v: int):
     record = get_kk_by_version(doc_id, v)
 
-    wib = pytz.timezone("Asia/Jakarta")
-    timestamp = datetime.now(wib).strftime("%d-%m-%Y %H:%M:%S")
+    wita = pytz.timezone("Asia/Makassar")
+    timestamp = datetime.now(wita).strftime("%d-%m-%Y %H:%M:%S")
 
     # 1️⃣ DATA TIDAK TERDAFTAR
     if not record:
@@ -286,8 +286,8 @@ async def update_kk(nomor_kk: str, file: UploadFile = File(...)):
     hash_bytes = generate_hash(data)
     sig = sign_document(hash_bytes)
 
-    wib = pytz.timezone("Asia/Jakarta")
-    timestamp = datetime.now(wib).strftime("%d-%m-%Y %H:%M:%S")
+    wita = pytz.timezone("Asia/Makassar")
+    timestamp = datetime.now(wita).strftime("%d-%m-%Y %H:%M:%S")
 
     save_kk_record(
         doc_id=nomor_kk,
